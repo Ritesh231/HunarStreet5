@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../Downloads/emailApi"
+		}
+	],
+	"settings": {
+		"chat.disableAIFeatures": false
+	}
+}

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+@import 'remixicon/fonts/remixicon.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+/* 
+
+.text-\[\#FAC207\],
+.text-\[\#FAAF00\],
+.text-\[\#FFC600\],
+.text-\[\#F4B400\],
+.text-\[\#FFC107\],
+.text-yellow-400,
+.text-yellow-500,
+.font-messiri,
+[style*="color: #FAC207"],
+[style*="color:#FAC207"],
+[style*="color: #FAAF00"],
+[style*="color:#FAAF00"],
+[style*="color: #FFC600"],
+[style*="color:#FFC600"] {
+    font-family: "El Messiri", sans-serif !important;
+} */
+.el-messiri {
+    font-family: "El Messiri", sans-serif !important;
+}
+
+/* ── Infinite Marquee ── */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-ltr {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes marquee-rtl {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee-ltr {
+    animation: marquee-ltr 25s linear infinite;
+}
+
+.animate-marquee-rtl {
+    animation: marquee-rtl 25s linear infinite;
+}
+
+/* Optional: Pause scrolling on hover for better user experience */
+.hover-pause:hover .animate-marquee-ltr,
+.hover-pause:hover .animate-marquee-rtl {
+    animation-play-state: paused;
+}

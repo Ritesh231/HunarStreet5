@@ -1,0 +1,24 @@
+const numberElement=document.getElementsByClassName('number');
+
+function animateNumbers(limit,elementNo,intervalNo){
+    numberElement[elementNo].innerText=''
+    let i=0;
+    let numberInterval= setInterval(writeNumber,Math.floor(4000/limit));
+    function writeNumber(){
+        if(i==limit ){
+            clearInterval(numberInterval);
+        }
+        else{
+            i+=intervalNo;
+            numberElement[elementNo].innerText=i
+        }
+    }
+}
+
+animateNumbers(350,0,1)
+animateNumbers(50000,1,50)
+animateNumbers(80,2,1)
+animateNumbers(90,3,1)
+
+
+

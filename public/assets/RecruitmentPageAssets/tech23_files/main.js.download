@@ -1,0 +1,157 @@
+const toggleButton=document.getElementById('toggleButton');
+let expertise='Tech';
+let optionsTag=document.getElementById('options')
+const Box=document.getElementsByClassName("sec5-row2-col3")[0];
+let expertiseOpt={
+    'Tech':['Staff Software Engineer','Machine Learning Engineer','Data Science Engineer',
+    'DevOps Engineer','Front-End Developers','Back-End Developers','Software Engineers',
+    'App Developers','ERP Consultants','CRM Consultants','Cloud Engineers','Tech/Server Support',
+    'System Analyst'
+    ]  ,
+    'NonTech':['EV','Health,Wellness & Fitness','E-commerce','Healthcare','Beauty & Cosmetics',
+    'Fintech','Capital Markets','Real Estate','Ad Tech','MICE','Construction','SCM','Retail/Apparel & Fashion',
+    'Maritime','Manufacturing'
+]
+}
+let images={
+    "StaffSoftwareEngineer":['cloud','mongodb','golang','kubernetes','scala','linux','restapi','ECS','EKS','aws','cicd','java'],
+    "MachineLearningEngineer":['msqlServer','tensorflow','dynamodb','python','keras','pytorch','llm','spark','EKS','aws','bigD&A','kafka'],
+    "DataScienceEngineer":['msqlServer','hive','ggplot','python','nosql','hadoop','informatica','aws-glue','tableau','etleap','streamset','talend','Matillion',
+        'matplotlib','java','diyotta'
+    ],
+    "DevOpsEngineer":['aws','kubernetes','golang','python','jira','linux','terraform','docker','jenkins','rails','cicd','kafka','ansible','selenium','java','consul'],
+    "Front-EndDevelopers":['vue','mern','git','ts','webstrom','html','react','atom','angular','vscode','codepen','sublime'],
+    "Back-EndDevelopers":['nodejs','mern','nginx','python','jira','joomla','kubernetes','mysql','drupal','firebase','java'],
+    "SoftwareEngineers":['microsoft .net','java','php','python'],
+    "AppDevelopers":['react','buildfire','flutter','onsenUI','angular','nativeScript','phonegap','framework7','xamarin','ionic','kotlin','swiftui','firebase','androidStudio'],
+    "ERPConsultants":['netsuite','ifs','infor','odoo','acumatica','saperp','oracle','ramco','msdynamic','workday'],
+    "CRMConsultants":['salesforce','cloudingo','prezi','clearbit','antmigration','circusinsight','quip','agilecrm','zohocrm','hubspotcrm','zendesk','msdynamic'],
+    "CloudEngineers":['msazure','aws','cloudability','informatica','cloud','puppet','terraform','kubernetes','oraclecloud','ibmcloud'],
+    "Tech/ServerSupport":['vmware','msintune','nutanix','sproutsocial','zohodesk','jira','slack','netwrixauditor','msactivedic','nagios','zabbix','hyperv',
+    ],
+    "SystemAnalyst":['msword','msex','msvisio','oraclenetsuit','sql','jira','balsamic']
+}
+
+
+
+let textNonTech={
+    'EV':['Lead -EV Charging','RND Head','Technical-Lead-Power Electronics-EV','sales/business/key accounts manger','DGM-Lead Digital Twin system Development','Lead Engineer(L3)','Electric Vehical Thermal Management System Engineer',
+        'Vendor Development -Electrical','Senior Manager Purchase Trims',"Head Product Development & System EV",'AM/DM-Service EV Preparation'
+    ],
+    'Health,Wellness&Fitness':['Spa Manager','Lead- Workplace Experience','Partnership Specialist','Health and Wellness Coach',
+        'Reasearch Manager','Manager New Product Development','Head Of Clinical Research',
+        'Medical Affairs Manager','Associate Venue Partnership','Sales/Business Development/Key Accounts Manager'
+    ],
+    'E-commerce':['E-commerce Operation Manager','Ecommerce Manager','Digital Marketing Specialis','D2C Manager','Ecommerce Product Manager','Tech Lead-eCommerce','Category Manager-D2C/Ecommerce',
+        'Sales/Business Development/Key Accounts Manager','Performace Marketing Stratergist ','Head Of Ecommerce',
+        'Business Analyst','Catlog Manager'
+    ],
+    'Healthcare':['Medical Affairs Manager','Occupational Therapist','Audiologist','Sales/Business Development/Key Accounts Manager',
+        'Account Health Specialist','Medical Administrator','Clinical Specialist','Patient Care Coordinator',
+        'Healthcare Information Technology Consultant','Healthcare Content Marketing Manager'
+    ],
+    'Beauty&Cosmetics':['Beauty Product Developer','Beauty Product Designer','Beauty Content Developer','R&D Scientist','Quality Control',
+        'New Product Development Managers','Sales/Business Development/Key Accounts Manager','Creative Content Lead','Formulation Scientist',
+        'Development','Digital Media Marketers'
+    ],
+    'Fintech':['Regional Business Head','Senior Product Manager','Growth and Stratergy Associate','Relationship Manager-Supply Chain Finance',
+    'Sales/Business Development/Key Accounts Manager','Finance Controller','Operations Managers','Brand Alliances Manager','Sr.Manager-Stratergy',
+     'Presales Tead Lead'
+    ],
+    'CapitalMarkets':['Wealth Manager','Deputy Management,Fund Manager','Sales/Business Development/Key Accounts Manager','Startup Fund Raising Manager','Senior Equity Research Analyst','Mutual Fund Analyst',
+        'Investment Advisor','Head-Corporate Leasing','Manager Investment Banking','Client Relationship Manager','Investor Relations Analyst'
+    ],
+    'RealEstate':['Legal Head- Real Estate','Assistant Manager-sales-Real Estate','Customer Specialist Management Specialist-Real Estate',
+     'Real Estate Consultant','Real Estate Project Finance Advisor','Senior Real Estate Analyst','Relationship Manager-Commercial Leasing','Senior Survey Manager',
+    'Accounts Manager-Real Estate','Head-corporate Leasing','Sales/Business Development/Key Accounts Manager'
+    ],
+    'AdTech':['Google Ads Specialist','Search Engine Optimization Manager','Performace Marketing Manager','Sales/Business Development/Key Accounts Manager','Advertising Copywriter','Advertising Copyeditor',
+    'Influencer Marketing Manager','Social Media Marketing Manager','Ad Film Maker','Video Editor','Public Relations'
+    ],
+    'MICE':['Corporate Sales Specialist-M.I.C.E & Events','Online Hotel Relations Manager','Sales/Business Development/Key Accounts Manager','Senior Manager-MICE Operations'],
+    'Construction':['Construction Manager','Civil Project Architect','Township/civil Construction','Sales/Business Development/Key Accounts Manager','Senior Planning Engineer','Interior Designer','Piping Engineer'
+        ,'Senior Civil Engineer','Solar Construction Manager','CAD Engineer','Electrical Engineer','Tunnel Construction Engineers','Warehouse Managers','Enviromental Engineers','Finishing Manager Infrastructure'
+    ],
+    'SCM':['Manager-SCM','Sales/Business Development/Key Accounts Manager','SCM & Export Logistic Manager','Warehouse Managers','Material Management Engineers','Inventory Managers','Demand Forecasting Managers','Purchasing Manager','Distribution Manager',
+        'Supply Chain Analyst/Specialist','Order to Cash (OTC) Specialist'
+    ],
+    'Retail/Apparel&Fashion':['Store Merchandiser','Marketing Merchandising Manager','Senior Fashion Consultant','Customer Experience Manager','Store Managers','Regional Sourcing Manager','Sales/Business Development/Key Accounts Manager',
+        'Operation Manager','Business Manager','Lead Experience Stores','Floor Manager','Visual Merchandiser'
+    ],
+    'Maritime':['Marine Superintendent','Marine Officers','Sales/Business Development/Key Accounts Manager','Naval Architect','Senior Naval Officers','Ocean Engineering',
+    'Marine Technician','Fleet Manager'
+    ],
+    'Manufacturing':['Automation Manager','Plant Manager','Process Engineer','Manufacturing Operation Lead','Plant Maintenance Engineer','Sales/Business Development/Key Accounts Manager',
+        'Production Manager','Production Planning & Control','Plant Operation Engineer','Quality Control Engineers','Business Process Re-Engineering Experts ','Safety Engineers'
+    ]
+
+}
+
+const handleOptionsTag=(expt)=>{
+    if(optionsTag.innerHTML!=''){optionsTag.innerHTML=''}
+    expertiseOpt[expt].map((opt,id)=>{
+        optionsTag.innerHTML+=`<div>
+        <input type="radio" name="experties" id="opt1" } onclick="setImages()" value=${opt.split(' ').join('')} >
+        <label for="opt1">${opt}</label>
+        </div>`
+    })
+}
+handleOptionsTag('Tech')
+toggleButton.children[0].addEventListener('click',()=>{
+    toggleButton.children[0].style.backgroundColor='white'
+    toggleButton.children[0].style.color='rgb(5,44,100)'
+    toggleButton.children[1].style.backgroundColor='rgb(5,44,100)'
+    toggleButton.children[1].style.color='white'
+})
+toggleButton.children[1].addEventListener('click',()=>{
+    toggleButton.children[1].style.backgroundColor='white'
+    toggleButton.children[1].style.color='rgb(5,44,100)'
+    toggleButton.children[0].style.backgroundColor='rgb(5,44,100)'
+    toggleButton.children[0].style.color='white'
+})
+
+toggleButton.firstElementChild.style.backgroundColor='white'
+toggleButton.firstElementChild.style.color='rgb(5,44,100)'
+
+toggleButton.firstElementChild.addEventListener('click',function(){
+    expertise="Tech"
+    handleOptionsTag('Tech')
+    document.getElementsByName('experties')[0].checked=true;
+    setImages();
+})
+toggleButton.children[1].addEventListener('click',function(){
+    expertise='NonTech'
+    handleOptionsTag('NonTech')
+    document.getElementsByName('experties')[0].checked=true;
+    setImages();
+})
+
+const setImages=()=>{
+    const checkedValue=document.querySelector('input[name="experties"]:checked').value;
+    if(Box.innerHTML!=''){Box.innerHTML=``}
+    if(expertise=='Tech'){
+        images[checkedValue].map((imgURL)=>{
+            Box.innerHTML+=`
+            <div>
+            <img src="./media/logos/${imgURL}.png" alt="">
+            <p>${imgURL}</p>
+            </div>
+            `
+        })
+    }
+    else{
+        textNonTech[checkedValue].map((text)=>{
+            Box.innerHTML+=`
+              <div class="exptText">
+              <p  >${text}</p>
+              </div>`
+            })
+        }
+    }
+
+document.getElementsByName('experties')[0].checked=true;
+setImages()    
+
+
+
+
